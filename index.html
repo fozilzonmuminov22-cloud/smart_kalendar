@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Jadval & Kalendar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Mening Rejam</h1>
+        <div id="live-clock">00:00:00</div>
+    </header>
+
+    <div class="main-layout">
+        <!-- Kalendar qismi -->
+        <div class="calendar-box">
+            <input type="date" id="calendar-input">
+            <div id="selected-date-display">Sana tanlang</div>
+        </div>
+
+        <!-- Shartlar va Vaqt kiritish -->
+        <div class="input-box">
+            <input type="text" id="task-desc" placeholder="Uchrashuv sharti (masalan: Mijoz bilan muloqot)">
+            <input type="time" id="task-time">
+            <button onclick="addTask()">Qo'shish</button>
+        </div>
+    </div>
+
+    <!-- Jadval natijasi -->
+    <table id="schedule-table">
+        <thead>
+            <tr>
+                <th>Sana</th>
+                <th>Vaqt</th>
+                <th>Vazifa/Shart</th>
+                <th>Amallar</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <!-- Ma'lumotlar shu yerga tushadi -->
+        </tbody>
+    </table>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

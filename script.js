@@ -1,18 +1,19 @@
-// 1. Real vaqt funksiyasi (3-vazifa)
+// 1. Soatni har soniyada yangilab turish
 function updateClock() {
     const now = new Date();
-    document.getElementById('live-clock').innerText = now.toLocaleTimeString('uz-UZ');
+    const clock = document.getElementById('live-clock');
+    if(clock) clock.innerText = now.toLocaleTimeString('uz-UZ');
 }
 setInterval(updateClock, 1000);
 
-// 2. Vazifa qo'shish funksiyasi (4 va 5-vazifa)
+// 2. Yangi vazifa qo'shish funksiyasi
 function addTask() {
     const date = document.getElementById('calendar-input').value;
     const desc = document.getElementById('task-desc').value;
     const time = document.getElementById('task-time').value;
 
     if (!date || !desc || !time) {
-        alert("Iltimos, hamma maydonlarni to'ldiring!");
+        alert("Iltimos, hamma ma'lumotlarni kiriting!");
         return;
     }
 
@@ -31,33 +32,31 @@ function addTask() {
 
     tableBody.appendChild(row);
     
-    // Tozalash
+    // Yozish joylarini tozalash
     document.getElementById('task-desc').value = "";
     document.getElementById('task-time').value = "";
 }
 
-// 3. O'chirish funksiyasi
+// 3. Vazifani o'chirish funksiyasi
 function deleteTask(btn) {
-    if(confirm("Haqiqatdan ham o'chirmoqchimisiz?")) {
-        btn.parentElement.parentElement.remove();
+    if(confirm("Ushbu rejangizni o'chirib tashlamoqchimisiz?")) {
+        btn.closest('tr').remove();
     }
 }
 
-// 4. O'zgartirish funksiyasi (6-vazifa)
+// 4. Vazifani tahrirlash (6-vazifa)
 function editTask(btn) {
-    const row = btn.parentElement.parentElement;
-    const dateCell = row.querySelector('.task-date');
+    const row = btn.closest('tr');
     const timeCell = row.querySelector('.task-time');
     const textCell = row.querySelector('.task-text');
 
-    const newDesc = prompt("Yangi shartni kiriting:", textCell.innerText);
-    const newTime = prompt("Yangi vaqtni kiriting (masalan 14:00):", timeCell.innerText);
+    const newDesc = prompt("Vazifani tahrirlang:", textCell.innerText);
+    const newTime = prompt("Vaqtni o'zgartiring (masalan, 15:30):", timeCell.innerText);
 
-    if (newDesc !== null) textCell.innerText = newDesc;
-    if (newTime !== null) timeCell.innerText = newTime;
+    if (newDesc !== null && newDesc.trim() !== "") {
+        textCell.innerText = newDesc;
+    }
+    if (newTime !== null && newTime.trim() !== "") {
+        timeCell.innerText = newTime;
+    }
 }
-
-// Kalendar tanlanganda sanani ko'rsatish (2-vazifa)
-document.getElementById('calendar-input').addEventListener('change', function() {
-    document.getElementById('selected-date-display').innerText = "Tanlangan sana: " + this.value;
-});
